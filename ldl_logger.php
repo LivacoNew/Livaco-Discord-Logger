@@ -1,6 +1,6 @@
 <?php
     // The URL to your Webhook.
-    $webhookurl = "https://discordapp.com/api/webhook/000000000000000000/aaaaaaaaaaaa-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+    $webhookurl = "https://discordapp.com/api/webhooks/some/webhook";
 
     // The password you set.
     $password = "super_secret_password";
@@ -44,17 +44,17 @@
             ]
         ]
     ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE );
-    $ch = curl_init();
-    curl_setopt_array($ch, [
-        CURLOPT_URL => $webhookurl,
-        CURLOPT_POST => true,
-        CURLOPT_POSTFIELDS => $hookObject,
-        CURLOPT_HTTPHEADER => [
-            "Length" => strlen($hookObject),
-            "Content-Type" => "application/json"
-        ]
-    ]);
-    $response = curl_exec($ch);
-    curl_close($ch);
-    die("Log successfully sent.")
+
+        //echo($json);
+        $ch = curl_init();
+        curl_setopt_array($ch, [
+            CURLOPT_URL => $webhookurl,
+            CURLOPT_POST => true,
+            CURLOPT_POSTFIELDS => $hookObject,
+            CURLOPT_HTTPHEADER => [
+                "Content-Type: application/json"
+            ]
+        ]);
+        $response = curl_exec($ch);
+        curl_close($ch);
 ?>
